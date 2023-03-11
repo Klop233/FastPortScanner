@@ -4,12 +4,13 @@ import socket
 import time
 import threading
 import sys
+import os
 import traceback
 
 lock = threading.Lock()
 unscanned_port = []
 scanned_port = []
-open_port = []
+open_port = {}  # port : thread num
 
 
 # If the port is open return true
@@ -35,8 +36,8 @@ def pick_task(host: str, thread_num: int):
             port = unscanned_port[0]
             unscanned_port.remove(port)
         if (scan(host, port)):
-            print(f"Thread {thread_num} discovered an open port: {port}")
-            open_port.append(port)
+            # print(f"Thread {thread_num} discovered an open port: {port}")
+            open_port[port] = thread_num
         scanned_port.append(port)
 
 
@@ -71,6 +72,16 @@ def run():
             print(f"Summary: Open ports: {len(open_port)}")
             print(f"{open_port}")
             sys.exit()
+
+        # Clear terminal
+        os.system("cls||clear")
+        print(f"Host: {host} | Threads: {threads} | Timeout: {timeout}")
+        print(
+            f"Unscanned: {len(unscanned_port)} | Scanned: {len(scanned_port)} | Open: {len(open_port)}")
+        for i in open_port.keys():
+            print(f"Open Port | Thread: {open_port[i]} | Port: {i}")
+
+        time.sleep(1)
 
 
 if __name__ == "__main__":
