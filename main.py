@@ -9,6 +9,7 @@ import traceback
 lock = threading.Lock()
 unscanned_port = []
 scanned_port = []
+open_port = []
 
 
 # If the port is open return true
@@ -35,6 +36,7 @@ def pick_task(host: str, thread_num: int):
             unscanned_port.remove(port)
         if (scan(host, port)):
             print(f"Thread {thread_num} discovered an open port: {port}")
+            open_port.append(port)
         scanned_port.append(port)
 
 
@@ -55,7 +57,7 @@ def run():
             threading.Thread(target=pick_task, args=(host, i))
         )
 
-    for i in range(65536):
+    for i in range(65535):
         unscanned_port.append(i+1)
 
     print("Staring Threads")
@@ -66,6 +68,8 @@ def run():
     while True:
         if len(unscanned_port) == 0:
             print(f"Complete! Spent {time.time() - t:.3f}")
+            print(f"Summary: Open ports: {len(open_port)}")
+            print(f"{open_port}")
             sys.exit()
 
 
