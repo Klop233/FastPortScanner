@@ -70,7 +70,7 @@ def run():
         if len(unscanned_port) == 0:
             print(f"Complete! Spent {time.time() - t:.3f}")
             print(f"Summary: Open ports: {len(open_port)}")
-            print(f"{open_port}")
+            print(f"{open_port.keys()}")
             sys.exit()
 
         # Clear terminal
