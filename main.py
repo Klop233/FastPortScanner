@@ -11,7 +11,8 @@ unscanned_port = []
 scanned_port = []
 
 
-def scan(host: str, port: int, timeout=1000) -> bool:  # If the port is open return true
+# If the port is open return true
+def scan(host: str, port: int, timeout=1000) -> bool:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(timeout / 1000)
     # Connect
