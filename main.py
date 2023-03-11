@@ -41,9 +41,9 @@ def pick_task(host: str, thread_num: int):
 def run():
     print("Fast Port Scanner by Klop233")
     host = input("Host: ")
-    threads = input("Threads(ms, default=100): ")  # Default is 100
+    threads = input("Threads(default=100): ")  # Default is 100
     threads = 100 if threads == "" else int(threads)
-    timeout = input("Timeout(default=1000): ")
+    timeout = input("Timeout(ms, default=1000): ")
     timeout = 1000 if timeout == "" else int(timeout)  # Default is 1000
 
     t = time.time()
