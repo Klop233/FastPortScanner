@@ -67,19 +67,21 @@ def run():
 
     print("Threads started")
     while True:
+        # Clear terminal
+        os.system("cls||clear")
+        print("Fast Port Scanner by Klop233")
+        with lock:
+            print(f"Host: {host} | Threads: {threads} | Timeout: {timeout}")
+            print(
+                f"Unscanned: {len(unscanned_port)} | Scanned: {len(scanned_port)} | Open: {len(open_port)}")
+            for i in open_port.keys():
+                print(f"Open Port | Thread: {open_port[i]} | Port: {i}")
+
         if len(unscanned_port) == 0:
             print(f"Complete! Spent {time.time() - t:.3f} sec")
             print(f"Summary: Open ports: {len(open_port)}")
             print(f"{open_port.keys()}")
             sys.exit()
-
-        # Clear terminal
-        os.system("cls||clear")
-        print(f"Host: {host} | Threads: {threads} | Timeout: {timeout}")
-        print(
-            f"Unscanned: {len(unscanned_port)} | Scanned: {len(scanned_port)} | Open: {len(open_port)}")
-        for i in open_port.keys():
-            print(f"Open Port | Thread: {open_port[i]} | Port: {i}")
 
         time.sleep(1)
 
