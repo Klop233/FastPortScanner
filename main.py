@@ -74,9 +74,9 @@ def run():
             print(f"Host: {host} | Threads: {threads} | Timeout: {timeout}")
             print(
                 f"Unscanned: {len(unscanned_port)} | Scanned: {len(scanned_port)} | Open: {len(open_port)}")
-            for i in open_port.keys():
+            keys = open_port.keys()
+            for i in keys:
                 print(f"Open Port | Thread: {open_port[i]} | Port: {i}")
-
         if len(unscanned_port) == 0:
             print(f"Complete! Spent {time.time() - t:.3f} sec")
             print(f"Summary: Open ports: {len(open_port)}")
