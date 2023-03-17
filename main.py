@@ -92,4 +92,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         sys.exit()
 else:
-    print("Sorrt, this is the entry of a program")
+    print("Sorry, this is the entry of a program")
